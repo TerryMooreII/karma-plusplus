@@ -104,7 +104,7 @@ function karma(payload, text) {
 }
 
 function getDbKarma(payload) {
-    return db.collection('karma').doc(payload.user_id);
+    return db.collection('karma').doc(payload.channel_id).doc(payload.user_id);
 }
 
 function setDbKarma(payload, user, amount) {
