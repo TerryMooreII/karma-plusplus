@@ -1,6 +1,17 @@
 require('dotenv').config();
 const Hapi = require('hapi');
 
+const admin = require('firebase-admin');
+
+const serviceAccount = require('./user.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const db = admin.firestore();
+
+
 // Create a server with a host and port
 const server = new Hapi.Server();
 server.connection({ 
@@ -36,6 +47,7 @@ function karmaSlashCommand(request, reply){
     const command = request.payload.text ? request.payload.text.toLowerCase() : '';
 
     if (command.startsWith('top')){
+        console.log(request.payload);
         return reply(getTop(request.payload));
     } else if (command.startsWith('bottom')){
         return reply(getBottom(request.payload));
@@ -68,10 +80,10 @@ function help(message = '') {
 }
 
 function karma(text) {
-    const { user, karma } = text.split(' ');
+    const [user, karma] = text.split(' ');
     let count = 0;
-
-    if (!karam.startsWith('++') || !karma.startsWith('--')) {
+    console.log('karma', karma.startsWith('++'));
+    if (!karma || (!karma.startsWith('++') && !karma.startsWith('--'))) {
         return help('Add either pluses or minuses after the user\'s name!');
     }
 
@@ -91,3 +103,29 @@ function karma(text) {
 
     return `${user} ${direction} ${count} karma.`
 }
+
+function getDbKarma(payload) {
+    var docRef = db.collection('karma').doc('alovelace');
+    
+    var setAda = docRef.set({
+        first: 'Ada',
+        last: 'Lovelace',
+        born: 1815
+    });
+      
+}
+
+
+/*
+
+{
+    "response_type": "in_channel",
+    "text": "It's 80 degrees right now.",
+    "attachments": [
+        {
+            "text":"Partly cloudy today and tomorrow"
+        }
+    ]
+}
+
+*/
