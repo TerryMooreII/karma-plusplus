@@ -43,11 +43,10 @@ server.start((err) => {
 });
 
 function karmaSlashCommand(request, reply){
-    console.log(request.payload)
+    
     const command = request.payload.text ? request.payload.text.toLowerCase() : '';
 
     if (command.startsWith('top')){
-        console.log(request.payload);
         return reply(getTop(request.payload));
     } else if (command.startsWith('bottom')){
         return reply(getBottom(request.payload));
@@ -58,12 +57,31 @@ function karmaSlashCommand(request, reply){
     }
 }
 
-function getTop(payload){
-    return 'top';
+function getTop(payload) {
+    var karmaRef = db.collection('karma');
+    
+     return karmaRef.where('teamId', '==', payload.team_id).orderBy('karma', 'asc').limit(5).get().then(snapshot => {
+        var results = '';
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            results += `${data.userName} has ${data.karma} karma\n`
+        })
+        return results;
+    }).catch(error => console.log(error));
+
 }
 
 function getBottom(payload){
-    return 'bottom';
+    var karmaRef = db.collection('karma');
+    
+     return karmaRef.where('teamId', '==', payload.team_id).orderBy('karma', 'desc').limit(5).get().then(snapshot => {
+        var results = '';
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            results += `${data.userName} has ${data.karma} karma\n`
+        })
+        return results;
+    }).catch(error => console.log(error));
 }
 
 function help(message = '') {
@@ -82,7 +100,6 @@ function help(message = '') {
 function karma(payload, text) {
     const [user, karma] = text.split(' ');
     let count = 0;
-    console.log('karma', karma.startsWith('++'));
     if (!karma || (!karma.startsWith('++') && !karma.startsWith('--'))) {
         return help('Add either pluses or minuses after the user\'s name!');
     }
@@ -123,7 +140,6 @@ function setDbKarma(payload, user, amount) {
         } else {
             data.karma = doc.data().karma + amount;
         }
-        console.log(data)
         docRef.set(data);
     }).catch(error => console.log(error));
 }
