@@ -19,10 +19,7 @@ server.route({
 server.route({
     method: 'POST',
     path:'/slack/karma', 
-    handler: function (request, reply) {
-        console.log(request.payload);
-        return reply('hello world');
-    }
+    handler: karmaSlashCommand
 });
 
 // Start the server
@@ -33,3 +30,34 @@ server.start((err) => {
     }
     console.log('Server running at:', server.info.uri);
 });
+
+function karmaSlashCommand(request, reply){
+    const command = request.payload.text;
+    if (!command){
+        return reply(help());
+    }
+
+    if (command.toLowerCase().includes('top')){
+        return reply(getTop(request.payload));
+    }
+
+    if (command.toLowerCase().includes('top')){
+        return reply(getBottom(request.payload));
+    }
+}
+
+function getTop(payload){
+    return 'top';
+}
+
+function getBottom(payload){
+    return 'bottom';
+}
+
+function help(){
+    return 
+    `Available /karma Commands:
+        /karma top          Show Top Karma Users
+        /karma bottom       Show Bottom Karma Users
+    `;
+}
