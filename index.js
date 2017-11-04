@@ -52,7 +52,7 @@ function karmaSlashCommand(request, reply){
     } else if (command.startsWith('bottom')){
         return reply(getBottom(request.payload));
     } else if (command[0] === '@') {
-        return reply(karma(command));
+        return reply(karma(request.payload, command));
     } else {
         return reply(help());
     }
@@ -79,7 +79,7 @@ function help(message = '') {
     `;
 }
 
-function karma(text) {
+function karma(payload, text) {
     const [user, karma] = text.split(' ');
     let count = 0;
     console.log('karma', karma.startsWith('++'));
@@ -117,14 +117,15 @@ function setDbKarma(payload, user, amount) {
             teamId: payload.team_id,
             teamDomain: payload.team_domain
         };
+
         if (!doc.exists) {
             data.karma = amount
         } else {
             data.karma = doc.data().karma + amount;
         }
-
+        console.log(data)
         docRef.set(data);
-    });
+    }).catch(error => console.log(error));
 }
 
 function response(message) {
