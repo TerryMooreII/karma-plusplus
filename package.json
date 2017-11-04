@@ -1,0 +1,27 @@
+{
+  "name": "karma-plusplus",
+  "version": "1.0.0",
+  "description": "Karma++ Slack App",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TerryMooreII/karma-plusplus.git"
+  },
+  "keywords": [
+    "slack"
+  ],
+  "author": "Terry Moore II",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TerryMooreII/karma-plusplus/issues"
+  },
+  "homepage": "https://github.com/TerryMooreII/karma-plusplus#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "hapi": "^16.6.2"
+  }
+}
