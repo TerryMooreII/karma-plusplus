@@ -114,7 +114,7 @@ function karma(payload, text) {
         count = -count;        
     } 
 
-    const direction = count > 0 ? 'lost' : 'was given';
+    const direction = count < 0 ? 'lost' : 'was given';
     setDbKarma(payload, user, count);
 
     return response(`${user} ${direction} ${count} karma.`);
