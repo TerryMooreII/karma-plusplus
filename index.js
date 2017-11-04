@@ -71,18 +71,18 @@ function karma(text) {
     const { user, karma } = text.split(' ');
     let count = 0;
 
-    if (!karam.startsWith('++') || !karma.startsWith('--')){
+    if (!karam.startsWith('++') || !karma.startsWith('--')) {
         return help('Add either pluses or minuses after the user\'s name!');
     }
 
-    if (karma.length > 5){
+    if (karma.length > 5) {
         count = 5;
-     }else {
+     } else {
         count = karma.length - 1;
     }
 
-    const direction;
-    if (karma[0] === '-'){
+    let direction;
+    if (karma[0] === '-') {
         direction = 'removed';
     } else {
         direction = 'given'
