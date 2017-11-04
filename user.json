@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "karma-plusplus",
+  "private_key_id": "e240ba8baf99f554aa8ffae80ae85320831d7fef",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDn87O09sBUEqKN\n40L8Are9Dofrp9qvjWhA3T1Y3pxARHI6fmN8dJfHf/hpYIbVF2sna8DtI4QE1Qjn\nBTtcJlnwLfaP06Kgko0kElf4fSbwCETTfhAsXBlVzs37MUUwo2R2SRFFs0y221Yy\nkBMi0CbQcuCx1hlYdjo8fAj7AMIxLG9HCLfXqM7TN/IWA6osSj6AjKrOhGFpI5e/\nIfaeswL/S46aKJMCJjE2maG8ZjFyqO/ttqQ/nscG+SzZiHBAacpqFFfPLmvULVMI\nPj9iC/VVTuZ9vIGLKovD8vdT5lR3acbfUR1VFvt9jNnlRphS0NfQY6AoyEt4wz6/\ntEXmKkkFAgMBAAECggEADpVfeKLE/+Q2DTa7OO4Q0FWwDQx+Luh0pBNk7of8ifvj\ntLLKnYIVIul0XGfBwncY+R8Iv8AqZkVgrGnDTC1rHTM+m9diE7dzIU/38PspbhEP\nBr8X1DosK513jPIRmBfF0rwQVnIKAjszJbWyRk+RCS0X3IaKDGpOigwAYouvKfkz\nD3omF22k6R6wNzKfh6vN5V4Bv+fcFbFjahhhUmzf4rv1SptsKP5FD1iTk8lIsMO7\nrj1KpvzSxY2qzRYONpZ+TAa5og4g3RUZwys3QVSNN63OLIEyMengF+7bRpzRXprQ\nzbPsLdq14Yejm8yapoLVp9s/szeT36HXG3P4Cc80wQKBgQD+9IjojLIKz4UCcK3G\nXbrldcMCTChJ66UBPtOh051G84frYH/71FJJtapdROGn1WKs2YbNPv7u2pdqbpit\ngnrNf0OutM+fsSSzgtO1Yen6cHNor4zDV/ThNSbaQk8iRaaE2nxJWGfz8/QckGXc\nRAuH53uNmtAfhNsPihLICwr6JQKBgQDo5wkEGN+x6y7keEV5TPB7O7BVav4fiFZq\nTEFSCmmenxSO57qfSsC8Aa/urRS9LYqTWbXTkWqFrK5Hkvy6GOBtDsk58BtUvnsq\nnCAdLgbLwVl/NxE5vEqiVnMx4jY+733F4p2acF+lVCJIgMIjtjUp9/KRlAJ6t/CW\ngsIr9BUtYQKBgQC6X8AFX3R3eqPc2MnvjG0neCKJ92osP1prwqWqUqtSRoxBgFWO\nnfNZdreHXucmbVKo0Is+VqK9sIWnhBmQHSXwOuwbNongTvppT2W73kvQi4uSJ2Jb\nGl0klFpGitqWTxwfWigo5bt4FgmJJ/WOQx+6xXkIVvd1UwVgIqsAGTJ5EQKBgHz/\n8uDWEMlG9oX83xy5ZKBfasaNhBKcc/TdNHm5yPIvYzNHv+vajRLavPgWwPi/xo5L\nKcGBXHCeO3OCuk2PKHSf6PRFoAWdrjEyVjITD+avwT776SzZmB0E1RLC3GZu10wr\n0nafNVZgj33mTUwpcOMzhmcHz0TaEDBXwashd3RBAoGAZPlw4fh6dguXl/QODMRS\nZY7VnT/C/KqS9DWzvisVuKbgG29o52lREI6Ox7Ik9KRrlq5tqnA4x77BJVXUx8KK\nS/ZY+DgxHLJFUR3xgHU+FP7RTDeCLt44bCEJPQm+G4JropHk4k+zFwVTTBb6DoCP\njW+dOLY7HagN78UogBBkfiU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "data-store-user@karma-plusplus.iam.gserviceaccount.com",
+  "client_id": "109105522999980192380",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/data-store-user%40karma-plusplus.iam.gserviceaccount.com"
+}

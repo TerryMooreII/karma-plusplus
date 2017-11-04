@@ -93,39 +93,69 @@ function karma(text) {
         count = karma.length - 1;
     }
 
-    let direction;
     if (karma[0] === '-') {
-        direction = 'removed';
-    } else {
-        direction = 'given'
-    }
+        count = -count;        
+    } 
 
+    const direction = count > 0 ? 'lost' : 'was given';
+    setDbKarma(payload, user, count);
 
-    return `${user} ${direction} ${count} karma.`
+    return response(`${user} ${direction} ${count} karma.`);
 }
 
 function getDbKarma(payload) {
-    var docRef = db.collection('karma').doc('alovelace');
-    
-    var setAda = docRef.set({
-        first: 'Ada',
-        last: 'Lovelace',
-        born: 1815
+    return db.collection('karma').doc(payload.user_id);
+}
+
+function setDbKarma(payload, user, amount) {
+    var docRef = getDbKarma(payload);
+    docRef.get().then(doc => {
+        let data = {
+            userName: user,
+            channelId: payload.channel_id,
+            channelName: payload.channel_name,
+            teamId: payload.team_id,
+            teamDomain: payload.team_domain
+        };
+        if (!doc.exists) {
+            data.karma = amount
+        } else {
+            data.karma = doc.data().karma + amount;
+        }
+
+        docRef.set(data);
     });
-      
+}
+
+function response(message) {
+    return {
+        "response_type": "in_channel",
+        "text": message
+        // "attachments": [
+        //     {
+        //         "text":"Partly cloudy today and tomorrow"
+        //     }
+        // ]
+    }
 }
 
 
 /*
 
-{
-    "response_type": "in_channel",
-    "text": "It's 80 degrees right now.",
-    "attachments": [
-        {
-            "text":"Partly cloudy today and tomorrow"
-        }
-    ]
+
+
+{ 
+   token: '5SFzFzk3lcvfUzXbeYXG0Phe',
+   team_id: 'T3QDS4TNY',
+   team_domain: 'broadvine',
+   channel_id: 'G7V3SMHFE',
+   channel_name: 'privategroup',
+   user_id: 'U5G9H3N8J',
+   user_name: 'tmoore',
+   command: '/karma',
+   text: 'top',
+   response_url: 'https://hooks.slack.com/commands/T3QDS4TNY/267162849044/KUYCHqCUeUVeJhp529AB9J76',
+   trigger_id: '266596392065.126468163780.3c12c4452f6d8b1a0b201eaeed74102f' 
 }
 
 */
