@@ -32,6 +32,7 @@ server.start((err) => {
 });
 
 function karmaSlashCommand(request, reply){
+    console.log(request.payload)
     const command = request.payload.text ? request.payload.text.toLowerCase() : '';
 
     if (command.startsWith('top')){
@@ -39,7 +40,7 @@ function karmaSlashCommand(request, reply){
     } else if (command.startsWith('bottom')){
         return reply(getBottom(request.payload));
     } else {
-        return help();
+        return reply(help());
     }
 }
 
@@ -51,10 +52,9 @@ function getBottom(payload){
     return 'bottom';
 }
 
-function help(){
-    return 
-    `Available /karma Commands:
-        /karma top          Show Top Karma Users
-        /karma bottom       Show Bottom Karma Users
+function help() {
+    return `Available /karma Commands:
+    /karma top          Show Top Karma Users
+    /karma bottom       Show Bottom Karma Users
     `;
 }
