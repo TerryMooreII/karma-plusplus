@@ -32,17 +32,15 @@ server.start((err) => {
 });
 
 function karmaSlashCommand(request, reply){
-    const command = request.payload.text;
-    if (!command){
-        return reply(help());
-    }
+    const command = request.payload.text ? request.payload.toLowerCase() : '';
 
-    if (command.toLowerCase().includes('top')){
+
+    if (command.startsWith('top')){
         return reply(getTop(request.payload));
-    }
-
-    if (command.toLowerCase().includes('top')){
+    } else if (command.startsWith('bottom')){
         return reply(getBottom(request.payload));
+    } else {
+        return help();
     }
 }
 
