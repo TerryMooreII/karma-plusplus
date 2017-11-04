@@ -20,7 +20,7 @@ server.route({
     method: 'POST',
     path:'/slack/karma', 
     handler: function (request, reply) {
-        console.log(request);
+        console.log(request.payload);
         return reply('hello world');
     }
 });
