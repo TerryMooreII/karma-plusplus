@@ -13,7 +13,7 @@ const db = admin.firestore();
 
 var RtmClient = require('@slack/client').RtmClient;
 var RTM_EVENTS = require('@slack/client').RTM_EVENTS;
-var bot_token = process.env.SLACK_API_TOKEN || '';
+var bot_token = process.env.SLACK_BOT_TOKEN || '';
 
 var rtm = new RtmClient(bot_token);
 
