@@ -162,8 +162,8 @@ function response(message) {
 //         .then(karma => response(`${payload.user_name} ${direction} ${user} ${count} karma. They now have ${karma} karma.`));
 // }
 
-function getDbKarma(payload) {
-    return db.collection('karma').doc(payload.userId);
+function getDbKarma(person) {
+    return db.collection('karma').doc(person.userId);
 }
 
 function setDbKarma(person) {
@@ -181,7 +181,7 @@ function setDbKarma(person) {
         }
 
         docRef.set(data);
-
+    
         return data.karma;
     })
     .catch(error => console.log(error));
@@ -189,12 +189,9 @@ function setDbKarma(person) {
 
 
 function getUserInfo(user) {
-    return web.users.info(user, function(err, res) {
-        if (err) {
-          console.log('Error:', err);
-        } 
+    return web.users.info(user).then(res => {
         return res
-       });       
+    });       
 }
 
 function handleRtmMessage(message) {
