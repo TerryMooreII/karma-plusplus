@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/TerryMooreII/karma-plusplus#readme",
   "dependencies": {
+    "@slack/client": "^3.14.1",
     "dotenv": "^4.0.0",
     "firebase-admin": "^5.4.3",
     "hapi": "^16.6.2"
