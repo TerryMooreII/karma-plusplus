@@ -241,7 +241,7 @@ function handleRtmMessage(message) {
             });
             return karma;
         }).then((karma) => {
-            
+            sendMessage(karma, channel);
         });
     });
 }
