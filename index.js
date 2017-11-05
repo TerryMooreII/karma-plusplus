@@ -36,7 +36,7 @@ server.route({
     method: 'POST',
     path:'/slack/event', 
     handler: function (request, reply) {
-        reply(payload.challenge);
+        reply({challenge: request.payload.challenge});
     }
 });
 
