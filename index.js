@@ -11,27 +11,17 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-
 var RtmClient = require('@slack/client').RtmClient;
 var RTM_EVENTS = require('@slack/client').RTM_EVENTS;
-
 var bot_token = process.env.SLACK_API_TOKEN || '';
 
 var rtm = new RtmClient(bot_token);
 
-// The client will emit an RTM.AUTHENTICATED event on successful connection, with the `rtm.start` payload if you want to cache it
-rtm.on(RTM_EVENTS.AUTHENTICATED, function (rtmStartData) {
-  console.log(`Logged in as ${rtmStartData.self.name} of team ${rtmStartData.team.name}, but not yet connected to a channel`);
+rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
+  console.log('Message:', message); //this is no doubt the lamest possible message handler, but you get the idea
 });
 
 rtm.start();
-
-rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
-    if (message.text === "Hello.") {
-      var channel = "#general"; //could also be a channel, group, DM, or user ID (C1234), or a username (@don)
-      rtm.sendMessage("Hello <@" + message.user + ">!", message.channel);
-    }
-  });
     
 
 // Create a server with a host and port
