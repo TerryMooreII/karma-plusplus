@@ -115,9 +115,7 @@ function karma(payload, text) {
     } 
 
     const direction = count < 0 ? 'lost' : 'was given';
-    setDbKarma(payload, user, count);
-
-    return response(`${user} ${direction} ${count} karma.`);
+    setDbKarma(payload, user, count).then(karma => response(`${user} ${direction} ${count} karma. Now has ${karma}`));
 }
 
 function getDbKarma(payload) {
@@ -126,7 +124,7 @@ function getDbKarma(payload) {
 
 function setDbKarma(payload, user, amount) {
     var docRef = getDbKarma(payload);
-    docRef.get().then(doc => {
+    return docRef.get().then(doc => {
         let data = {
             userName: user,
             channelId: payload.channel_id,
@@ -141,6 +139,7 @@ function setDbKarma(payload, user, amount) {
             data.karma = doc.data().karma + amount;
         }
         docRef.set(data);
+        return data.karma;
     }).catch(error => console.log(error));
 }
 
