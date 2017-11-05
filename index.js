@@ -21,6 +21,19 @@ rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
   console.log('Message:', message); //this is no doubt the lamest possible message handler, but you get the idea
 });
 
+var WebClient = require('@slack/client').WebClient;
+
+var token = process.env.SLACK_API_TOKEN || '';
+
+var web = new WebClient(token);
+web.user.info('U5G9H3N8J', function(err, res) {
+ if (err) {
+   console.log('Error:', err);
+ } else {
+   console.log('User INfo: ', res);
+ }
+});
+
 rtm.start();
     
 
