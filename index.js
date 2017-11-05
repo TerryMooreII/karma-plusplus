@@ -230,17 +230,23 @@ function handleRtmMessage(message) {
         karma = karma.map((person, index) => {
             person.total = result[index];
             return person;
-        })
+        });
+        console.log('save promises');
+        console.log(karma)
         return karma
     }).then((karma) => {
         var usersPromises = karma.map(person => getUserInfo(person.userId))
         Promise.all(usersPromises).then(result => {
             karma = karma.map((person, index) => {
-                karma.user = person[index];
-                return karma;
+                person.user = person[index];
+                return person;
             });
+            console.log('user promises');
+            console.log(karma)
             return karma;
         }).then((karma) => {
+            console.log('before send message');
+            console.log(karma)
             sendMessage(karma, channel);
         });
     });
