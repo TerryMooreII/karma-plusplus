@@ -235,7 +235,7 @@ function handleRtmMessage(message) {
     }).then((karma) => {
         var usersPromises = karma.map(person => getUserInfo(person.userId))
         Promise.all(usersPromises).then(result => {
-            karma = karma.map(person => {
+            karma = karma.map((person, index) => {
                 karma.user = person[index];
                 return karma;
             });
