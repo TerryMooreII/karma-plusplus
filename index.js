@@ -257,7 +257,7 @@ function sendMessage(karma, channel) {
     var message = '';
     karma.forEach(person => {
         console.log(person.user);
-        message += `${person.userId} karma was ${person.karma > 0 ? 'increased' : 'decresed'} to ${person.total} `
+        message += `${person.user.user.real_name} karma was ${person.karma > 0 ? 'increased' : 'decresed'} to ${person.total} `
     })
 
     rtm.sendMessage(message, channel);
