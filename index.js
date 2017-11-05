@@ -175,9 +175,9 @@ function setDbKarma(person) {
         };
 
         if (!doc.exists) {
-            data.karma = person.adminamount
+            data.karma = person.karma
         } else {
-            data.karma = doc.data().karma + person.amount;
+            data.karma = doc.data().karma + person.karma;
         }
 
         docRef.set(data);
@@ -238,7 +238,7 @@ function handleRtmMessage(message) {
         var usersPromises = karma.map(person => getUserInfo(person.userId))
         Promise.all(usersPromises).then(result => {
             karma = karma.map((person, index) => {
-                person.user = person[index];
+                person.user = result[index];
                 return person;
             });
             console.log('user promises');
