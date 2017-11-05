@@ -32,6 +32,14 @@ server.route({
     handler: karmaSlashCommand
 });
 
+server.route({
+    method: 'POST',
+    path:'/slack/event', 
+    handler: function (request, reply) {
+        reply(payload.challenge);
+    }
+});
+
 // Start the server
 server.start((err) => {
 
