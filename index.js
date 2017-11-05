@@ -11,7 +11,6 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-
 // Create a server with a host and port
 const server = new Hapi.Server();
 server.connection({ 
@@ -64,7 +63,7 @@ function getTop(payload) {
         var results = '';
         snapshot.forEach(doc => {
             const data = doc.data();
-            results += `${data.userName} has ${data.karma} karma\n`
+            results += `${data.karma} ${data.userName}\n`
         })
         return response(results);
     }).catch(error => console.log(error));
@@ -78,7 +77,7 @@ function getBottom(payload){
         var results = '';
         snapshot.forEach(doc => {
             const data = doc.data();
-            results += `${data.userName} has ${data.karma} karma\n`
+            results += `${data.karma} ${data.userName}\n`
         })
         return response(results);
     }).catch(error => console.log(error));
@@ -98,10 +97,25 @@ function help(message = '') {
 }
 
 function karma(payload, text) {
-    const [user, karma] = text.split(' ');
+    let [user, karma] = text.split(' ');
     let count = 0;
+
+    if (user.includes('+')) {
+        var index = user.indexOf('+');
+        karma = user.substr(index);
+        user = user.substr(0, index);
+    } else if (user.includes('-')) {
+        var index = user.indexOf('-');
+        karma = user.substr(index);
+        user = user.substr(0, index);
+    }
+
     if (!karma || (!karma.startsWith('++') && !karma.startsWith('--'))) {
         return help('Add either pluses or minuses after the user\'s name!');
+    }
+
+    if (user.substr(1) === payload.user_name) {
+        return response(`${user} tried to give themself karma.`);
     }
 
     if (karma.length > 5) {
@@ -114,8 +128,9 @@ function karma(payload, text) {
         count = -count;        
     } 
 
-    const direction = count < 0 ? 'lost' : 'was given';
-    setDbKarma(payload, user, count).then(karma => response(`${user} ${direction} ${count} karma. Now has ${karma}`));
+    const direction = count < 0 ? 'removed' : 'gave';
+    return setDbKarma(payload, user, count)
+        .then(karma => response(`${payload.user_name} ${direction} ${user} ${count} karma. They now have ${karma} karma.`));
 }
 
 function getDbKarma(payload) {
