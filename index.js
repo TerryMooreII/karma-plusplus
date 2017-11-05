@@ -163,11 +163,11 @@ function response(message) {
 // }
 
 function getDbKarma(payload) {
-    return db.collection('karma').doc(payload.user_id);
+    return db.collection('karma').doc(payload.userId);
 }
 
 function setDbKarma(person) {
-    var docRef = getDbKarma(payload);
+    var docRef = getDbKarma(person);
     return docRef.get().then(doc => {
         let data = {
             userId: person.userId,
