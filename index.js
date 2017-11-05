@@ -13,20 +13,20 @@ const db = admin.firestore();
 
 var RtmClient = require('@slack/client').RtmClient;
 var RTM_EVENTS = require('@slack/client').RTM_EVENTS;
+var WebClient = require('@slack/client').WebClient;
+var token = process.env.SLACK_API_TOKEN || '';
 var bot_token = process.env.SLACK_BOT_TOKEN || '';
 
 var rtm = new RtmClient(bot_token);
+var web = new WebClient(token);
 
 rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
-  console.log('Message:', message); //this is no doubt the lamest possible message handler, but you get the idea
+  console.log('Message:', message); 
 });
 
-var WebClient = require('@slack/client').WebClient;
 
-var token = process.env.SLACK_API_TOKEN || '';
 
-var web = new WebClient(token);
-web.user.info('U5G9H3N8J', function(err, res) {
+web.users.info('U5G9H3N8J', function(err, res) {
  if (err) {
    console.log('Error:', err);
  } else {
