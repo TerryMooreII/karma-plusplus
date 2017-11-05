@@ -227,6 +227,8 @@ function handleRtmMessage(message) {
 
     const savePromises = karma.map(person => setDbKarma(person))
     Promise.all(savePromises).then(result => {
+        console.log('result1')
+        console.log(result)
         karma = karma.map((person, index) => {
             person.total = result[index];
             return person;
@@ -237,6 +239,8 @@ function handleRtmMessage(message) {
     }).then((karma) => {
         var usersPromises = karma.map(person => getUserInfo(person.userId))
         Promise.all(usersPromises).then(result => {
+            console.log('result2')
+            console.log(result)
             karma = karma.map((person, index) => {
                 person.user = result[index];
                 return person;
