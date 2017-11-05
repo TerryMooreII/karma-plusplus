@@ -200,7 +200,7 @@ function getUserInfo(user) {
 function handleRtmMessage(message) {
     var karma = [];
     var channel = message.channel;
-    
+    var split = message.text.split(' ');
     split.forEach((part, index) => {
       
       var next = split[index + 1] || '';
