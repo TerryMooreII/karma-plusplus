@@ -66,7 +66,7 @@ function getTop(payload) {
             const data = doc.data();
             results += `${data.userName} has ${data.karma} karma\n`
         })
-        return results;
+        return response(results);
     }).catch(error => console.log(error));
 
 }
@@ -80,7 +80,7 @@ function getBottom(payload){
             const data = doc.data();
             results += `${data.userName} has ${data.karma} karma\n`
         })
-        return results;
+        return response(results);
     }).catch(error => console.log(error));
 }
 
