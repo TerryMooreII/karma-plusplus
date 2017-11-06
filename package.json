@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint lib/*.js",
+    "lint-fix": "eslint lib/*.js --fix"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,10 @@
     "dotenv": "^4.0.0",
     "firebase-admin": "^5.4.3",
     "hapi": "^16.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
   }
 }
